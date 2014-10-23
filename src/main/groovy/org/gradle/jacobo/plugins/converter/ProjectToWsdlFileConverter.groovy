@@ -27,25 +27,26 @@ class ProjectToWsdlFileConverter implements NameToFileConverter {
    */
   @Override
   public String convert(String projectName) {
-    if (!projectName.contains("-ws")) { 
-      def errorStrings = ["$projectName does not conform to the convention -- ",
-			  "MUST be suffixed with a '-ws'"]
-      throw new GradleException(errorStrings.sum())
-    }
-
-    log.debug("converting '{}' to its WSDL name", projectName)
-    def sansSuffix = projectName[0..-4] // remvoe suffix
-
-    // dashed to camel case
-    def camelCase = sansSuffix.replaceAll(/-(\w)/) { 
-      fullMatch, firstCharacter ->
-	firstCharacter.toUpperCase()
-    }
-
-    // capitalize first letter
-    def wsdlName = camelCase.replaceFirst(/^./) { it.toUpperCase() }
-    log.debug("converted '{}' ==> '{}'", projectName, wsdlName)
-    return "${wsdlName}Service"
+//    if (!projectName.contains("-ws")) { 
+//      def errorStrings = ["$projectName does not conform to the convention -- ",
+//			  "MUST be suffixed with a '-ws'"]
+//      throw new GradleException(errorStrings.sum())
+//    }
+//
+//    log.debug("converting '{}' to its WSDL name", projectName)
+//    def sansSuffix = projectName[0..-4] // remvoe suffix
+//
+//    // dashed to camel case
+//    def camelCase = sansSuffix.replaceAll(/-(\w)/) { //
+//      fullMatch, firstCharacter ->
+//	firstCharacter.toUpperCase()
+//    }
+//
+//    // capitalize first letter
+//    def wsdlName = camelCase.replaceFirst(/^./) { it.toUpperCase() }
+//    log.debug("converted '{}' ==> '{}'", projectName, wsdlName)
+//    return "${wsdlName}Service"
+    return projectName
   }
 
   /**
